@@ -1,10 +1,8 @@
 import { authMiddleware } from "@clerk/nextjs";
-import { Webhook } from "lucide-react";
 
 export default authMiddleware({
-  publicRoutes: ["/api/webhook/clerk"],
+  publicRoutes: ["/api/webhooks(.*)"],
 });
-
 export const config = {
   matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
 };
