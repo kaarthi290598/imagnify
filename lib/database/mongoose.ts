@@ -7,28 +7,28 @@ interface MongooseConnection {
   promise: Promise<Mongoose> | null;
 }
 
-let catched: MongooseConnection = (global as any).mongoose;
+let cached: MongooseConnection = (global as any).mongoose;
 
-if (!catched) {
-  catched = (global as any).mongoose = {
+if (!cached) {
+  cached = (global as any).mongoose = {
     conn: null,
     promise: null,
   };
 }
 
 export const connectToDatabase = async () => {
-  if (catched.conn) return catched.conn;
+  if (cached.conn) return cached.conn;
 
-  if (!MONGODB_URL) throw new Error("MONGODB_URL must be defined");
+  if (!MONGODB_URL) throw new Error("Missing MONGODB_URL");
 
-  catched.promise =
-    catched.promise ||
+  cached.promise =
+    cached.promise ||
     mongoose.connect(MONGODB_URL, {
       dbName: "imagnify",
       bufferCommands: false,
     });
 
-  catched.conn = await catched.promise;
+  cached.conn = await cached.promise;
 
-  return catched.conn;
+  return cached.conn;
 };

@@ -32,7 +32,7 @@ const MobileNav = () => {
         />
       </Link>
 
-      <nav className="flex gap-4">
+      <nav className="flex gap-4 border-5">
         <SignedIn>
           <UserButton afterSignOutUrl="/" />
 
@@ -46,7 +46,7 @@ const MobileNav = () => {
                 className="cursor-pointer"
               />
             </SheetTrigger>
-            <SheetContent className="sheet-content ">
+            <SheetContent className="sheet-content w-72">
               <>
                 <Image
                   src="/assets/images/logo-text.svg"
